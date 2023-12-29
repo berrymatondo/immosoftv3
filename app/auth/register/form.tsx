@@ -1,11 +1,14 @@
 "use client";
 import React, { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import Title from "@/app/components/Title";
+import MyLabel from "@/app/components/MyLabel";
 
 type PropsLogin = {
   session: any;
 };
+
+const inputStyle =
+  "rounded-lg py-1 px-2 max-lg:p-1 mb-1  bg-secondary outline-0 border border-hov w-full";
 
 const RegisterForm = (props: PropsLogin) => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -52,17 +55,13 @@ const RegisterForm = (props: PropsLogin) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-start items-center"
+      className="border border-hov rounded-lg mt-5 flex flex-col justify-start items-center md:max-w-[400px]"
     >
-      <div className="self-center">
-        <Title title="Nouvel Utilisateur" back={false} size="lg:text-xl" />{" "}
-      </div>
-
-      <div className="text-lg  border rounded-lg w-full p-2 ">
+      <div className="text-lg w-full p-2 ">
         <div className="w-full  py-2 flex flex-col">
-          <label className="font-semibold m-1">{"Nom d'utilisateur"}</label>
+          <MyLabel title="Nom d'utilisateur" />
           <input
-            className="border border-black rounded-full p-2"
+            className={inputStyle}
             name="username"
             type="username"
             onChange={() => setErrorMsg("")}
@@ -70,9 +69,9 @@ const RegisterForm = (props: PropsLogin) => {
           />
         </div>
         <div className="w-full  py-2 flex flex-col">
-          <label className="font-semibold m-1">Email</label>
+          <MyLabel title="Email" />
           <input
-            className="border border-black rounded-full p-2"
+            className={inputStyle}
             name="email"
             type="email"
             onChange={() => setErrorMsg("")}
@@ -81,9 +80,9 @@ const RegisterForm = (props: PropsLogin) => {
         </div>
 
         <div className="w-full  py-2 flex flex-col">
-          <label className="font-semibold m-1">Mot de passe</label>
+          <MyLabel title="Mot de passe" />
           <input
-            className="border border-black rounded-full p-2"
+            className={inputStyle}
             name="password"
             type="password"
             onChange={() => setErrorMsg("")}
@@ -99,13 +98,13 @@ const RegisterForm = (props: PropsLogin) => {
             name="isadmin"
             type="checkbox"
           />
-          <label>Administrateur</label>
+          <MyLabel title="Administrateur ?" />
         </div>
 
         <div className="self-end flex flex-col justify-center gap-2 mt-4">
           <button
             type="submit"
-            className="bg-third text-white text-lg rounded-lg px-2 py-1 w-full"
+            className="mt-4 bg-teal-800 hover:bg-teal-600 text-white text-lg rounded-lg px-2 py-1 w-full"
           >
             Enregistrer
           </button>

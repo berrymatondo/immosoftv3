@@ -1,26 +1,28 @@
 import { authOptions } from "@/utils/authOptions";
-//import Header from "../components/Header";
-//import Login from "../components/Login";
 import RegisterForm from "./form";
 import { getServerSession } from "next-auth";
 
-import { FaHouseDamage } from "react-icons/fa";
+import Title from "@/app/components/Title";
 
 const RegisterPage = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <>
-      {/*       <Login session={session} />
-       */}{" "}
-      <div className="max-w-[400px] mx-auto">
-        {/*         <div className=" flex justify-center text-6xl">
-          <span className="text-third">
-            <FaHouseDamage />
-          </span>
-        </div> */}
+    <div className="w-full mx-auto  ">
+      <div className=" rounded-lg p-2 mt-2 bg-primary">
+        <div className="flex items-center gap-2">
+          <Title title="Nouvel utilisateur" back={true} size="lg:text-xl" />{" "}
+        </div>
+        <div className="flex justify-between items-center">
+          <p className="text-sm">
+            {
+              "Cette transaction permet d'ajouter un nouvel utilisateur dans le système"
+            }
+          </p>
+        </div>
+
         <RegisterForm session={session} />
       </div>
-    </>
+    </div>
   );
 };
 
