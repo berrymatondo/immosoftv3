@@ -1,0 +1,207 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  name     String?
+  status   UserStatus @default(INACTIVE)
+  role  Role    @default(USER)
+  createAt DateTime? @default(now())
+  updatedAt DateTime?  @updatedAt
+  userId Int?
+  username String?
+}
+
+model Person {
+  id       Int     @id @default(autoincrement())
+  firstname    String?
+  lastname String
+  gender Gender
+  maritalstatus MaritalStatus
+  birthday DateTime?
+  mobile String?
+  email     String?  @unique
+  address String?
+  notes String?
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int?
+  username String
+  origin String?
+  assus Assurance[]
+  immos Immo[]
+  task Task[]
+  rgpd Rgpd?
+}
+
+
+model Assurance {
+  id       Int     @id @default(autoincrement())
+  comments    String?
+  status AssuStatus
+  type AssuType
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int?
+  username String?
+  personId Int
+  person Person @relation(fields: [personId], references: [id])
+  task Task[] 
+}
+
+
+model Task {
+  id       Int     @id @default(autoincrement())
+  description    String?
+  done            Boolean @default(false)
+  type            ProductType
+
+  personId        Int
+  person Person @relation(fields: [personId], references: [id])
+
+  assuId Int?
+  assurance Assurance? @relation(fields: [assuId], references: [id])
+
+  immoId Int?
+  immo Immo? @relation(fields: [immoId], references: [id])
+
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int?
+  username String?
+  
+}
+
+model Rgpd {
+  id Int @id @default(autoincrement())
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  personId Int @unique
+  signed Boolean @default(false)
+  checksum Int
+  person Person @relation(fields: [personId], references: [id])
+}
+
+model Solde {
+  id Int @id @default(autoincrement())
+  denom String
+  category catagoryTyp
+  amount Decimal @db.Decimal(10,2)
+  conjoint Boolean @default(false)
+  immoId Int
+  //immo Immo @relation(fields: [immoId], references: [id])
+
+}
+
+model Parameter {
+  id Int @id @default(autoincrement())
+  name String?
+  visible Boolean? @default(false)
+  origin String?
+}
+
+
+enum catagoryTyp {
+ E
+ S
+ // amount Decimal?  @mysql.Decimal(10, 2)
+}
+
+
+model Immo {
+  id Int @id @default(autoincrement())
+  anaDone Boolean @default(false)
+  cachierCharge String?
+  debutClause DateTime?
+  demandeCours String?
+  endDate DateTime?
+  fileClosed Boolean @default(false)
+  notes String?
+  offerAccepted Boolean @default(false)
+  offerDone Boolean @default(false)
+  rechercheBien String?
+  startDate DateTime?
+  immoStatus ImmoStatus @default(NEW)
+  maritalStatus MaritalStatus
+
+  salNet Decimal @db.Decimal(10,2)
+  salNetCo Decimal @db.Decimal(10,2)
+  chqRep Decimal @db.Decimal(10,2)
+  chqRepCo Decimal @db.Decimal(10,2)
+  autRev Decimal @db.Decimal(10,2)
+  autRevCo Decimal @db.Decimal(10,2)
+  prtTmp Decimal @db.Decimal(10,2)
+  prtTmpCo Decimal @db.Decimal(10,2)
+  autPrt Decimal @db.Decimal(10,2)
+  autPrtCo Decimal @db.Decimal(10,2)
+
+  createAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId Int?
+  username String?
+
+  //linked client
+  personId Int
+  person Person @relation(fields: [personId], references: [id])
+  task Task[] 
+  //solde Solde[] 
+}
+enum ImmoStatus {
+  DEC
+  RBI
+  CLO
+  ARV
+  NEW
+}
+enum AssuType {
+  AXA
+  DELA
+  DKV
+  AUTRE
+}
+
+enum AssuStatus {
+  DV1
+  DV2
+  OFA
+  OAC 
+  PCD
+}
+
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+enum Gender {
+  Homme
+  Femme
+}
+
+enum MaritalStatus {
+  M
+  C
+}
+
+enum ProductType {
+  IMMO
+  ASSU
+}
