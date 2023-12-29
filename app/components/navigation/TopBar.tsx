@@ -36,7 +36,7 @@ const Topbar = () => {
   }
 
   return (
-    <div className="px-2 text-xs md:hidden sticky top-10 flex justify-between">
+    <div className="px-2 text-xs md:hidden top-10 flex justify-between">
       <Connect session={session} />
       <Disconnect />
     </div>

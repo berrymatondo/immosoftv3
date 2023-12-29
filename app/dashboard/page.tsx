@@ -12,6 +12,9 @@ import Rightbar from "../components/dashboard/rightbar/Rightbar";
 import Transactions from "../components/dashboard/Transactions";
 import ClientDash from "../components/client/ClientDash";
 import Chart from "../components/dashboard/Chart";
+import AssuDash from "../components/assu/AssuDash";
+import ImmoDash from "../components/immo/ImmoDash";
+import ActionDash from "../components/action/ActionDash";
 
 export const dynamic = "force-dynamic";
 
@@ -26,9 +29,9 @@ export default async function DashboardPage() {
       <div className="flex-[3_3_0%] flex flex-col gap-5 w-full">
         <div className="flex justify-between gap-5 max-md:gap-1 max-md:flex-col w-full">
           <ClientDash />
-          {/*          <AssuDash />
+          <AssuDash />
           <ImmoDash />
-          <ActionDash /> */}
+          <ActionDash />
         </div>
         <Transactions />
         <Chart />
