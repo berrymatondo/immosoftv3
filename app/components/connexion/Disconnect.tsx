@@ -8,19 +8,22 @@ const Disconnect = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   return (
-    <div className="flex items-center p-5 gap-2  my-1 rounded-lg">
+    <div className=" flex items-center gap-2  my-1 rounded-lg">
       {session && (
         <div className="flex justify-between items-center w-full">
           {" "}
-          <span
+          <p
             onClick={() => {
               signOut({ redirect: false });
-              router.push("/");
+              router.push("/auth/login");
             }}
             className="flex items-center gap-2 text-red-400  hover:cursor-pointer hover:bg-[#2e374a]"
           >
-            <MdLogout size={30} /> Se Déconnecter
-          </span>
+            <span className="max-md:hidden">
+              <MdLogout size={30} />
+            </span>{" "}
+            Se Déconnecter
+          </p>
         </div>
       )}
     </div>

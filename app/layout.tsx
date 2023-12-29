@@ -6,6 +6,7 @@ import AuthProvider from "./context/AuthProvider";
 import Footer from "./components/navigation/Footer";
 import Sidebar from "./components/navigation/Sidebar";
 import Navbar from "./components/navigation/Navbar";
+import TopBar from "./components/navigation/TopBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,7 +33,7 @@ export default function RootLayout({
           </div>
           <div className="flex-[4_4_0%] md:p-5 flex flex-col justify-between h-screen ">
             <Navbar />
-
+            <TopBar />
             {children}
             <Toaster richColors />
             <Footer />

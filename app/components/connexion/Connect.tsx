@@ -27,7 +27,7 @@ const Connect = (props: PropsLogin) => {
         <div className="flex justify-between items-center w-full ">
           {" "}
           <div className="flex items-center gap-5 mb-5">
-            <div className="w-10 h-10 p-2 rounded-full relative overflow-hidden">
+            <div className="max-md:hidden w-10 h-10 p-2 rounded-full relative overflow-hidden">
               <Image
                 src="/noavatar.png"
                 alt="profil"
@@ -38,7 +38,9 @@ const Connect = (props: PropsLogin) => {
               />
             </div>
             <div className="flex flex-col">
-              {props.session && <span>{props.session.user.username}</span>}
+              {props.session && (
+                <span>Welcome, {props.session.user.username}</span>
+              )}
               {props.session && (
                 <span className="text-xs text-third">
                   {props.session.user.role === "ADMIN"
