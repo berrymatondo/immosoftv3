@@ -352,7 +352,7 @@ const DetailsClientPage = ({ params }: ClientDetailsPageProps) => {
                             <MdHouse size={20} />
                           )}
                         </span>
-                        Acttion {tk.id} {"liée"} {" à "}
+                        Action {tk.id} {"liée"} {" à "}
                         {tk.type === "ASSU"
                           ? "ASSU-" + tk.assuId
                           : "IMMO-" + tk.immoId}{" "}

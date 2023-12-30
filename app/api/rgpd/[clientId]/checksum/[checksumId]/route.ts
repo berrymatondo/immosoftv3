@@ -28,7 +28,6 @@ export const GET = async (request: NextRequest, response: NextResponse) => {
     });
 
     //console.log("results", rgdp);
-
     return NextResponse.json({ message: "OK", rgdp }, { status: 200 });
   } catch (error) {
     //console.log("error", error);

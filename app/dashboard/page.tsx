@@ -27,7 +27,7 @@ export default async function DashboardPage() {
   return (
     <div className="flex gap-5 mt-5 max-md:px-1">
       <div className="flex-[3_3_0%] flex flex-col gap-5 w-full">
-        <div className="flex justify-between gap-5 max-md:gap-1 max-md:flex-col w-full">
+        <div className="md:flex md:justify-between md:gap-5 md:w-full max-md:grid max-md:grid-cols-2 max-md:gap-2">
           <ClientDash />
           <AssuDash />
           <ImmoDash />

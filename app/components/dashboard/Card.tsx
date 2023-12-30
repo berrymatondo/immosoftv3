@@ -16,16 +16,16 @@ const Card = (props: CardProps) => {
   return (
     <div
       onClick={() => router.push(props.path)}
-      className="bg-secondary p-5 rounded-lg flex gap-5 hover:bg-hov hover:cursor-pointer w-full"
+      className=" bg-secondary p-5 max-md:p-2 rounded-lg flex gap-5 hover:bg-hov hover:cursor-pointer w-full"
     >
       {/* <MdSupervisedUserCircle size={24} /> */}
       {props.icon}
-      <div className="flex flex-col gap-3 w-full">
-        <span>Total {props.title}</span>
-        <span className="font-medium">{props.total}</span>
+      <div className="flex flex-col md:gap-3 w-full">
+        <span className="">Total {props.title}</span>
+        <span className="font-medium text-yellow-400">{props.total}</span>
         <span className="font-light text-sm">
           <span className="text-green-400 font-semibold"> </span>
-          {props.text}
+          <span className="max-md:hidden">{props.text}</span>
         </span>
       </div>
     </div>

@@ -42,12 +42,12 @@ const ImmosTable = ({ immos, userRole }: ImmosTableProps) => {
     if (ind == 5) return "bg-green-600";
   };
   return (
-    <table className="bg-primary w-full mt-6 rounded-lg p-4">
+    <table className="max-md:text-sm bg-primary w-full mt-6 rounded-lg p-4">
       <thead>
         <tr className="font-semibold text-third bg-hov">
           <th className="px-2 py-4 text-left">Preneur</th>
 
-          <th className="text-left">Description</th>
+          <th className="max-md:hidden text-left">Description</th>
           <th className="text-left">Progression</th>
           <th className="text-right pr-2">Fin clause</th>
           {/*           {userRole === "ADMIN" && (
@@ -65,11 +65,11 @@ const ImmosTable = ({ immos, userRole }: ImmosTableProps) => {
                 router.push(`/clients/${el.person.id}/immos/${el.id}`)
               }
             >
-              <td className="text-left p-2 max-md:flex max-md:flex-col">
+              <td className="text-left p-2 max-md:flex max-md:flex-col max-md:text-xs">
                 <span className="uppercase">{el.person.lastname}</span>{" "}
                 {el.person.firstname}
               </td>
-              <td className="text-left text-sm">
+              <td className="max-md:hidden text-left text-sm">
                 <p>
                   <span className="flex items-center gap-1">
                     <em>IMMO-{el.id}</em>
@@ -80,7 +80,7 @@ const ImmosTable = ({ immos, userRole }: ImmosTableProps) => {
                 </p>
                 <p className="text-yellow-400 ">{el.notes}</p>
               </td>
-              <td className="text-left">
+              <td className="text-left py-2 ">
                 {prog.map((ele, index) => (
                   <label
                     className={
@@ -95,11 +95,24 @@ const ImmosTable = ({ immos, userRole }: ImmosTableProps) => {
                     {ele}
                   </label>
                 ))}{" "}
-                <span className={`${getCol(getProgress(el))} p-1 rounded-lg`}>
+                <p
+                  className={`${getCol(
+                    getProgress(el)
+                  )} md:hidden w-48 block mt-2 text-center  p-1 rounded-lg max-md:text-xs`}
+                >
+                  {showStatus(el)}
+                </p>
+                <span
+                  className={`${getCol(
+                    getProgress(el)
+                  )} max-md:hidden  p-1 rounded-lg max-md:text-xs`}
+                >
                   {showStatus(el)}
                 </span>
               </td>
-              <td className="text-right pr-2">{el?.endDate?.split("T")[0]}</td>
+              <td className="text-right pr-2 max-md:text-xs">
+                {el?.endDate?.split("T")[0]}
+              </td>
 
               {/*               {userRole === "ADMIN" && (
                 <td className="flex items-center gap-4 justify-end px-4 py-2 text-right max-md:hidden">

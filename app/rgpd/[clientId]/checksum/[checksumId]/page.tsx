@@ -41,7 +41,7 @@ const ValidateRGPD = ({ params }: ValidateRGPDProps) => {
       const data = await res.json();
       // setClient(data);
 
-      console.log("client", data);
+      //console.log("client", data);
 
       if (
         res.ok &&

@@ -73,7 +73,7 @@ const ClientsListPage = ({
           Cette transaction permet de lister tous les clients
         </p>
       </div>
-      <div className="flex justify-between items-center my-5 max-md:flex-col max-md:items-start  max-md:gap-2">
+      <div className="flex justify-between items-center my-5">
         <div className="flex items-center gap-2 bg-hov p-2 rounded-lg max-w-max">
           <Search
             placeholder="Rechercher un client ..."
